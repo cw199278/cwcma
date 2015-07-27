@@ -1,0 +1,108 @@
+{{extends file="app/views/layout/admin_layout.html"}}
+
+{{block name="content"}}
+<div>
+    <div>
+        <a href="index.php?c=admin"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>主页 ></a>
+        <a href="index.php?c=system&a=site_info">栏目管理</a>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>栏目管理</h2>
+            <div class="row">
+                &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary"><a href="index.php?c=file&a=cate" >新增顶级栏目</a></button>
+                &nbsp;<button type="button" class="btn btn-danger sort">排序</button>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>排序</th>
+                        <th>名称</th>
+                        <th></th>
+                        <th></th>
+                        <th>栏目文章</th>
+                        <th><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <form action="" method="post" class="file">
+                        {{foreach $columns as $column}}
+                        <tr>
+                            <th scope="row">
+                            </th>
+                            <td class="title"><input type="text" class="form-control come" name="sort[]" value="{{$column.sort}}"></td>
+                            <td class="url">
+                                {{if $column.type eq 0}}
+                                <a href="index.php?c=file&a=column_edit&id={{$column.id}}">
+                                {{elseif $column.type eq 1}}
+                                <a href="index.php?c=file&a=add&id={{$column.id}}">
+                                {{/if}}
+                                    {{for $i=1; $i<$column.count; $i++}}
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    {{/for}}
+                                    {{$column.name}}
+                                </a>
+                                {{if $column.type eq 0}}
+                                &nbsp; &nbsp; &nbsp; &nbsp;<span style="font-size:10px;">封面</span>
+                                {{/if}}
+
+                            </td>
+                            <td></td>
+                            <td></td>
+
+                            <input type="hidden" name="id[]" value="{{$column.id}}"/>
+                            <td>
+                                {{if $column.type eq 1}}
+                                <a href="index.php?c=file&a=article&cate_id={{$column.id}}">
+                                查看文章列表
+                                </a>
+                                {{/if}}
+                            </td>
+                            <td data-id="{{$column.id}}">
+                                <a href="index.php?c=file&a=cate&id={{$column.id}}" class="edit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;&nbsp;</a>
+                                <a href="index.php?c=file&a=column_edit&id={{$column.id}}" class="edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;&nbsp;</a>
+                                <a href="index.php?c=file&a=del_column&id={{$column.id}}"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a>
+                            </td>
+                        </tr>
+                        <!--{{foreach $column.child as $child}}-->
+                        <!--<tr>-->
+                            <!--<th scope="row">-->
+
+                            <!--</th>-->
+                            <!--<td class="title"><input type="text" class="form-control come" name="sort[]" value="{{$child.sort}}"></td>-->
+                            <!--<td class="url">-->
+                                <!--<a href="">-->
+
+                                     <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$child.name}}-->
+                                <!--</a>-->
+                            <!--</td>-->
+                            <!--<td></td>-->
+                            <!--<td></td>-->
+                            <!--&lt;!&ndash;<input type="hidden" name="id[]" value="{{$flink.id}}"/>&ndash;&gt;-->
+                            <!--<td><a href="">查看栏目文章</a></td>-->
+                            <!--<td data-id="{{$child.id}}">-->
+                                <!--<a href="javascript: void 0;" class="edit" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;&nbsp;</a>-->
+                                <!--<a href="" ><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--{{/foreach}}-->
+                        {{/foreach}}
+                    </form>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{{/block}}
+{{block name="js"}}
+<script type="text/javascript">
+$(function(){
+    $(".sort").click(function(){
+        $(".file").attr("action", "index.php?c=file&a=sort").submit();
+    })
+})
+</script>
+{{/block}}

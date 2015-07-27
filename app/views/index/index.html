@@ -1,0 +1,304 @@
+<!DOCTYPE php>
+<php>
+<head>
+<title>主页</title>
+<link href="{{$assets}}/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="{{$assets}}/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <style>
+        .thumbnail img{
+            width: 390px;
+            height: 267px;
+        }
+    </style>
+<!--web-font-->
+<link href='http://{{$assets}}/fonts.useso.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://{{$assets}}/fonts.useso.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<!--//web-font-->
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/php; charset=utf-8" />
+<meta name="keywords" content="Excursion Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="https://{{$assets}}/ajax.useso.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- //js -->	
+<!-- start-smoth-scrolling-->
+<script type="text/javascript" src="{{$assets}}/js/move-top.js"></script>
+<script type="text/javascript" src="{{$assets}}/js/easing.js"></script>
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('php,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+</script>
+<!--//end-smoth-scrolling-->
+</head>
+<body>
+	<!--navigation-->
+	<div class="top-nav">
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-left">
+                        <li><a href="index.php?c=index">主页</a></li>
+                        <li><a href="index.php?c=index&a=tour">运动项目</a></li>
+                        <li><a href="index.php?c=index&a=gallery" class="">咨讯</a></li>
+                        <!-- <li><a href="testimonial.php">户外名人</a></li> -->
+                        <li><a href="index.php?c=index&a=blog">驴友交流</a></li>
+                        <li><a href="index.php?c=index&a=contact">活动/路线</a></li>
+					</ul>	
+					<div class="social-icons">
+						<ul>
+							<li><a href="#"></a></li>
+							<li><a href="#" class="fb"></a></li>
+							<li><a href="#" class="gg"></a></li>
+						</ul>	
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>	
+		</nav>		
+	</div>	
+	<!--navigation-->
+	<!--header-->
+	<div class="header">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.php"><img src="{{$assets}}/images/logo.png" alt=""></a>
+			</div>	
+			<form class="navbar-form navbar-right" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="搜索">
+				</div>
+				<button type="submit" class="btn btn-default" aria-label="Left Align">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				</button>
+			</form>	
+		</div>	
+	</div>
+	<!--//header-->
+	<div class="banner">
+		<!-- banner-text Slider starts Here -->
+				<script src="{{$assets}}/js/responsiveslides.min.js"></script>
+				 <script>
+					// You can also use "$(window).load(function() {"
+						$(function () {
+						// Slideshow 4
+							$("#slider3").responsiveSlides({
+							auto: true,
+							pager:false,
+							nav:true,
+							speed: 500,
+							namespace: "callbacks",
+							before: function () {
+							$('.events').append("<li>before event fired.</li>");
+							},
+							after: function () {
+								$('.events').append("<li>after event fired.</li>");
+							}
+						});	
+					});
+				</script>
+			<!--//End-slider-script -->
+			<div class="banner-title"> 
+				<div class="container">
+					<div  id="top" class="callbacks_container">
+						<ul class="rslides" id="slider3">
+							<li>
+								<h5>挑战自己</h5>
+								<h1>让我们的生活更加激情</h1>
+							</li>
+						</ul>	
+					</div>
+				</div>
+            </div>	
+	</div>		
+	<div class="banner-bottom">
+		<div class="container">
+			<div class="row">
+                {{foreach $articles as $article}}
+				<div class="col-md-4 bb-grids">
+					<a href="" class="thumbnail">
+					  <img src="{{$article.thumb}}" alt="" name="thumb">
+					</a>
+				</div>
+                {{/foreach}}
+				<!--<div class="col-md-4 bb-grids">-->
+					<!--<a href="" class="thumbnail">-->
+					  <!--<img src="{{$assets}}/images/img2.jpg" alt="">-->
+					<!--</a>-->
+				<!--</div>-->
+				<!--<div class="col-md-4 bb-grids">-->
+					<!--<a href="" class="thumbnail">-->
+					  <!--<img src="{{$assets}}/images/img3.jpg" alt="">-->
+					<!--</a>-->
+				<!--</div>-->
+				<!--<div class="clearfix"> </div>-->
+			<!--</div>-->
+			<!--<div class="row">-->
+				<!--<div class="col-md-4 bb-grids">-->
+					<!--<a href="" class="thumbnail">-->
+					  <!--<img src="{{$assets}}/images/img4.jpg" alt="">-->
+					<!--</a>-->
+				<!--</div>-->
+				<!--<div class="col-md-4 bb-grids">-->
+					<!--<a href="" class="thumbnail">-->
+					  <!--<img src="{{$assets}}/images/img5.jpg" alt="">-->
+					<!--</a>-->
+				<!--</div>-->
+				<!--<div class="col-md-4 bb-grids">-->
+					<!--<a href="" class="thumbnail">-->
+					  <!--<img src="{{$assets}}/images/img6.jpg" alt="">-->
+					<!--</a>-->
+				<!--</div>-->
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<div class="banner-bottom">
+		<div class="container">
+			<h3>户外运动简介</h3>
+			<p>户外运动，是一项在自然场地举行的一组集体项目群。其中包括登山、攀岩、悬崖速降、在野外露营、野炊、定向运动、溪流、探险等项目，户外休闲运动中多数带有探险性，属于极限和亚极限运动，有很大的挑战性和刺激性，拥抱自然，挑战自我。</p>
+		</div>
+	</div>	
+	<div class="features">
+		<div class="container">
+			<h3>推荐目的地</h3>
+			<div class="row">
+                {{foreach $down_articles as $a}}
+				<div class="col-sm-6 col-md-6 featur-grids">
+					<div class="thumbnail feature-thmbnl">
+						<h4>{{$a.title}}</h4>
+						<img src="{{$a.thumb}}" alt="">
+						<div class="caption">
+							<!-- <h5><a href="">Aliquam erat volutpat<a></h5> -->
+							<p>{{$a.content}}</p>
+							<a href="" class="btn btn-primary hvr-rectangle-in">报名参加</a>
+						</div>
+					</div>
+				</div>
+                {{/foreach}}
+				<!--<div class="col-sm-6 col-md-6 featur-grids">-->
+					<!--<div class="thumbnail feature-thmbnl">-->
+						<!--<h4>盘龙系漂流</h4>-->
+						<!--<img src="{{$assets}}/images/img8.jpg" alt="">-->
+						<!--<div class="caption">-->
+
+							<!--<p>盘龙溪漂流位于湖北省咸宁市通山县源头村，在国家级风景区九宫山北麓省级森林公园--大幕山森林公园脚下。蜿蜒曲折四公里长</p>-->
+							<!--<a href="" class="btn btn-primary hvr-rectangle-in">报名参加</a>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!-- <div class="col-sm-6 col-md-4 featur-grids">
+					<div class="thumbnail feature-thmbnl">
+						<h4>Gilla frinreet</h4>
+						<img src="images/img9.jpg" alt="">
+						<div class="caption">
+							<h5><a href="">Aliquam erat volutpat<a></h5>
+							<p>Donec vitae tellus non sem vulputate cursus. Aliquam erat volutpat. Proin ut est et sem rhoncus fringilla laoreet</p>
+							<a href="" class="btn btn-primary hvr-rectangle-in">Read More</a>
+						</div>
+					</div>
+				</div> -->
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="col-md-6 about">
+				<h3>驴行天下</h3>	
+				<p>驴行天下是一个公益性的民间自发性组织，成立的目的有两个:1.为了让更多的人能够免费走出户外、找回自我、释放自己、摆脱日常生活中的烦操、无味。学习团队协作、互帮互助精神，体现自身价值。2.在组织大家走出户外的同时，以自己本土的旅游景点为己任，做到：发现一处，宣传一处，走红一处。致力于推动本地旅游业的健康发展而奋斗。活动内容为不定期的组织本地周边一日自驾游、徒步、穿越、旅行、探险、定向越野、露营、钓鱼等户外休闲活动为主，最全面的驴友信息交流平台。区别于传统于旅行社的传统模式，拒绝走马观花式的旅游，以一种完全自由、自助的方式、心态去享受旅行中的乐趣。我们拥有最朴实、最忠诚于驴友的服务团队，个性化、专业化是我们所追求的最终目标。
+				</p>
+			</div>
+			<div class="col-md-6 posts">
+				<h3>驴行天下</h3>
+				<div class="media">
+					<div class="media-left">
+						<a href="">
+						  <img class="media-object thumbnail" src="{{$assets}}/images/img11.jpg" alt="">
+						</a>
+				    </div>
+					<div class="media-body">
+						<h4 class="media-heading"><a href="">  游记攻略 </a></h4>
+						<h5>三天以上行程长篇国内图文并茂游</h5>
+					</div>
+				</div>
+			<!-- 	<div class="media">
+					<div class="media-left">
+						<a href="">
+						  <img class="media-object thumbnail" src="images/img10.jpg" alt="">
+						</a>
+				    </div>
+					<div class="media-body">
+						<h4 class="media-heading"><a href=""> 户外摄影</a></h4>
+						<h5>以户外运动为主题的摄影作品展示</h5>
+					</div>
+				</div> -->
+				<div class="media">
+					<div class="media-left">
+						<a href="">
+						  <img class="media-object thumbnail" src="{{$assets}}/images/img43.jpg" alt="">
+						</a>
+				    </div>
+					<div class="media-body">
+						<h4 class="media-heading"><a href=""> 我秀我户外</a></h4>
+						<h5>个人户外秀照片，禁集体照风景照</h5>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="col-md-4 address">
+				<h3>站长信息</h3>
+				<p>Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus,
+					luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta </p>
+				<ul>
+					<li><span></span>Moonshine St. 14/05 Light, Jupiter</li>
+					<li><span class="ph-no"></span>+00 (123) 456 78 90</li>
+					<li><span class="mail"></span><a href="mailto:example@mail.com">mail@example.com</a></li>
+				</ul>
+			</div> -->
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- 	<div class="copy-right">
+		<div class="container">
+			<p>Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+		</div>
+	</div> -->
+	<!--smooth-scrolling-of-move-up-->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				/*
+				var defaults = {
+					containerID: 'toTop', // fading element id
+					containerHoverID: 'toTopHover', // fading element hover id
+					scrollSpeed: 1200,
+					easingType: 'linear' 
+				};
+				*/
+				
+				$().UItoTop({ easingType: 'easeOutQuart' });
+				
+			});
+		</script>
+		<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	<!--//smooth-scrolling-of-move-up-->
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{$assets}}/js/bootstrap.js"></script>
+</body>
+</php>

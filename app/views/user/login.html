@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{$assets}}/css/reg.css">
+    <title>
+
+
+    </title>
+</head>
+<body>
+<div calss="container">
+    <div class="content">
+        <form action="index.php?c=user&a=do_login" method="post">
+            <h1>用户登录</h1>
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" class="form-control" id="username" placeholder="请填写用户名" name="name">
+            </div>
+            <div class="form-group">
+                <label for="Password">密码</label>
+                <input type="password" class="form-control" id="Password" placeholder="请填写密码" name="password">
+            </div>
+
+            <button type="submit" class="btn btn-default ">登录</button>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="rem" value="1"> 记住我
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="register">
+        <h4><a href="index.php?c=user&a=reg">没有用户名请注册</a></h4>
+    </div>
+</div>
+<script src="{{$assets}}/js/jquery-2.1.4.min.js"></script>
+<script src="{{$assets}}/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".btn").click(function(){
+            var username = $("#username").val();
+            var password = $("#password").val();
+            if(username =="" || password ==""){
+                alert("用户名密码不能为空");
+                return false;
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+</head>
+<body>
+<script src="{{$assets}}/ckfinder/ckfinder.js"></script>
+<script>
+    var finder = new CKFinder();
+    // The path for the installation of CKFinder (default = "/ckfinder/").
+    finder.basePath = '{{$assets}}/ckfinder/samples';
+    // The default height is 400.
+    finder.height = 600;
+    // This is a sample function which is called when a file is selected in CKFinder.
+    finder.create();
+</script>
+</body>
+</html>
+
+

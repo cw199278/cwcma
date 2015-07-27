@@ -1,0 +1,202 @@
+{{extends file="app/views/layout/admin_layout.html"}}
+{{block name="css"}}
+<link rel="stylesheet" type="text/css" href="{{$assets}}/select2/css/select2.min.css">
+<link rel="stylesheet" type="text/css" href="{{$assets}}/colorpicker/css/colorpicker.css">
+<link rel="stylesheet" type="text/css" href="{{$assets}}/datepicker/datepicker.css">
+{{/block}}
+{{block name="content"}}
+<div>
+    <div>
+        <a href="index.php?c=admin"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>主页 ></a>
+        <a href="index.php?c=file&a=article">文章列表</a>
+        <a href="">添加文章</a>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>添加文章</h2>
+        </div>
+        <div class="panel-body cate">
+            <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#tab1">添加栏目</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <form class="form-horizontal" action="index.php?c=file&a=alter&id={{$article.id}}" method="post">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" >所属栏目</label>
+                <div class="col-sm-10">
+
+                    <select class="form-control do_ceme" name="cate_id">
+                    {{foreach $cates as $cate}}
+                        <option value="{{$cate.id}}"
+                            {{if $cate.id eq $article.cate_id}}selected{{/if}}
+                        >{{$cate.name}}</option>
+                    {{/foreach}}
+
+                    </select>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" >标题</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control"  placeholder="文章标题" name="title" value="{{$article.title}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">标题颜色</label>
+
+                <div class="input-append color colorpicker " data-color-format="hex" data-color="#000000">
+                    <input type="text" value="{{$article.color}}" class="form-control comes" name="color">
+                    <span class="add-on">
+                        <i style="background-color: rgb(0, 0, 0);"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" >发布日期</label>
+                <div class="controls">
+                    <input type="text" data-date-format="yyyy-mm-dd" value=" {{date('Y-m-d', $article.date)}}" name="date" class="datepicker span6 form-control come_one">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Description field:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">摘要</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">缩略图</label>
+                <div class="col-sm-10">
+                    <input type="text" id="thumb1" class="span5" name="thumb" value="{{$article.thumb}}">
+                    <input type="button"  value="上 传" onclick="BrowseServer('thumb1','img_show1')" class="btn btn-success" />
+                    <input type="button" value="删 除" class="thumb_del1 btn btn-danger add_del1">
+                    <img src="{{$article.thumb}}" id="img_show1" width="90px" height="50px"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">新增附件</label>
+                <div class="col-sm-10">
+                    <button type="button" class="btn btn-primary add_file">增加</button>
+                </div>
+            </div>
+
+
+            {{foreach $article.files as $key=>$file}}
+            <div class="form-group add">
+                <label class="col-sm-2 control-label">附件({{$key+1}})</label>
+                <div class="col-sm-10">
+                    <input type="text" id="thumb{{$key+1}}" class="span5" name="files[]" value="{{$file}}">
+                    <input type="button"  value="上 传" onclick="BrowseServer('thumb{{$key+1}}')" class="btn btn-success" />
+                    <input type="button" value="删 除" class="thumb_del btn btn-danger add_del1">
+                </div>
+            </div>
+            {{/foreach}}
+
+
+            <div>
+                <textarea name="content" class="content">{{$article.content}}</textarea>
+            </div>
+
+            <div class="form-actions" >
+                <button type="submit" class="btn btn-success submit">提交</button>
+                <a href="" class="btn btn-info">返回</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+{{/block}}
+{{block name="js"}}
+
+<script type="text/javascript" src="{{$assets}}/select2/js/select2.min.js"></script>
+<script type="text/javascript" src="{{$assets}}/colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="{{$assets}}/datepicker/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="{{$assets}}/ckfinder/ckfinder.js"></script>
+<script src="{{$assets}}/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="{{$assets}}/ckfinder/ckfinder.js"></script>
+<script type="text/javascript">
+    $('select').select2();
+    $('.colorpicker').colorpicker();
+    $('.datepicker').datepicker();
+    function BrowseServer(thumb1, img_show1) {
+        var finder = new CKFinder();
+
+        //当选中图片时执行的函数
+        finder.selectActionFunction = function(fileUrl){
+            $("#"+thumb1).val(fileUrl);
+            $("#"+img_show1).attr("src",""+fileUrl+"");
+        }
+
+        finder.popup();//调用窗口
+    }
+    //    function BrowseServer(thumb2, img_show2) {
+    //        var finder = new CKFinder();
+    //
+    //        //当选中图片时执行的函数
+    //        finder.selectActionFunction = function(fileUrl){
+    //            $("#"+thumb2).val(fileUrl);
+    //            $("#"+img_show1).attr("src",""+fileUrl+"");
+    //        }
+    //
+    //        finder.popup();//调用窗口
+    //    }
+    CKEDITOR.replace('content',
+            {
+                filebrowserBrowseUrl: '{{$assets}}/ckfinder/ckfinder.html',
+                filebrowserImageBrowseUrl: '{{$assets}}/ckfinder/ckfinder.html?type=Images',
+                filebrowserFlashBrowseUrl: '{{$assets}}/ckfinder/ckfinder.html?type=Flash',
+                filebrowserUploadUrl: '{{$assets}}/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                filebrowserImageUploadUrl: '{{$assets}}/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                filebrowserFlashUploadUrl: '{{$assets}}/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+            });
+    $(function(){
+
+//        增加附件
+        $(".add_file").click(function(){
+
+            var i =$('.add').size();
+
+            var n =i+1;
+            var html =  '<div class="form-group add">'+
+                    '<label class="col-sm-2 control-label">附件('+n+')</label>'+
+                    '<div class="col-sm-10">'+
+                    '<input type="text" id="files'+n+'" class="span5" name="files[]">&nbsp;'+
+                    '<input type="button"  value="上 传" onclick="BrowseServer(\'files'+n+'\')" class="btn btn-success" />&nbsp;'+
+                    '<input type="button" value="删 除" class="add_del btn btn-danger">'+
+                    '</div>'+
+                    '</div>'
+            if(n<6){
+                $(".add:last").after(html);
+            } else{
+                alert("");
+                return false;
+            }
+        })
+
+//        删除缩略图
+        $(".thumb_del1").click(function () {
+
+            $("#thumb1").val("");
+            $("#img_show1").attr('src', '');
+        })
+
+//        删除增加的附件
+        $(document).on("click", ".add_del", function(){
+            $(this).parent().parent().remove();
+        })
+
+    })
+</script>
+
+
+{{/block}}

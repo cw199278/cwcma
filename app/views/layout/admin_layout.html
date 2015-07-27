@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="{{$assets}}/css/reg.css">
+    {{block name="css"}}{{/block}}
+    <title></title>
+
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.php?c=admin">后台首页</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other conten for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="index.php?c=site&a=index">文件管理 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">清除缓存</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">内容管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="index.php?c=file&a=article">文章列表</a></li>
+                        <li><a href="index.php?c=file&a=column">栏目列表</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">系统设置 <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="index.php?c=system&a=site_info">站点信息</a></li>
+                        <li><a href="index.php?c=user&a=change_password">修改密码</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">尊敬的{{$user.name}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">个人信息</a></li>
+                        <li><a href="#">设置</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">安全退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+
+    {{block name="content"}}{{/block}}
+    <div class="arr">2013 © 长乐未央.<span class="glyphicon glyphicon-music" aria-hidden="true"></span>  Canon4Ever.com</div>
+</div>
+
+<script src="{{$assets}}/js/jquery-2.1.4.min.js"></script>
+<script src="{{$assets}}/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{$assets}}/jquery-2.1.4.min.js"></script>
+
+{{block name="js"}}{{/block}}
+</body>
+</html>

@@ -1,0 +1,146 @@
+{{extends file="app/views/layout/admin_layout.html"}}
+{{block name="content"}}
+<div>
+    <div class="tuot">
+        <a href="index.php?c=admin"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>主页 ></a>
+        <a href="">系统设置 ></a>
+        <a href="index.php?c=system&a=site_info">站点信息</a>
+    </div>
+    <div class="titled"><h2>站点信息</h2></div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-1"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+                <div class="col-md-11"><h3 class="panel-title">站点信息修改</h3></div>
+            </div>
+        </div>
+        <div class="panel-body">
+
+
+            <form class="form-horizontal form1" action="index.php?c=system&a=change_site_info" method="post">
+
+
+                <div class="front">
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">名字：</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control first_name"  placeholder="" name="first_name" value="{{$system.first_name}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">姓氏：</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="inputtext" name="last_name" value="{{$system.last_name}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">网站名称 :
+                        </label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control"  placeholder="" name="gite_name" value="{{$system.gite_name}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">ICP备案号:
+                        </label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control"  placeholder="" name="icp" value="{{$system.icp}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">版权信息
+                        </label>
+                        <div class="col-sm-2">
+                            <textarea name="sign" rows="3" cols="37" name="copyright">{{$system.copyright}}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mean">
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">E-mail :</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  placeholder="" name="emali" value="{{$system.emali}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">QQ :
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control"  placeholder="" name="qq" value="{{$system.qq}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">联系电话 :
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control"  placeholder="" name="tel" value="{{$system.tel}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">传真 :
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control"  placeholder="" name="fax" value="{{$system.fax}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">新浪微博 :</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control"  placeholder="">
+                        </div>
+                    </div>
+                    s
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> 长乐未央CMS使用协议
+                        </label>
+                    </div>
+                </div>
+                <button class="btn1 btn-default">后退</button>
+                <button class="btn2 btn-default">前进</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{/block}}
+{{block name="js"}}
+<script>
+
+    $(function() {
+//        前进
+        $(".btn2").click(function () {
+            var first_name = $(".first_name").val();
+            if(first_name == "") {
+                alert("用户名不能为空");
+                $(".first_name").focus();
+                return false;
+            }
+            if ($(this).text() == "提交") {
+                $(".form1").submit();
+            }
+            $(".mean").fadeIn();
+            $(".front").hide();
+            $(".btn1").prop("disabled", false);
+            $(".btn1").text("后退");
+            $(".btn2").text("提交");
+            return false;
+        })
+
+        //后退
+        $(".btn1").click(function () {
+            $(".front").fadeIn();
+            $(".mean").hide();
+            $(".btn2").prop("disabled", false);
+            $(".btn1").prop("disabled", true);
+            $(".btn2").text("前进");
+            return false;
+        })
+    })
+
+
+
+</script>
+
+{{/block}}

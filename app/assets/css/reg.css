@@ -1,0 +1,131 @@
+*{
+     margin: 0;
+     padding: 0;
+ }
+
+body{
+    background-image: url("../images/xq.jpg") ;
+}
+.form-control {
+    width: 360px;
+}
+.content{
+    position:absolute;
+    top: 100px;
+    left: 580px;
+}
+.register{
+    position:absolute;
+    top: 400px;
+    left: 600px;
+}
+.wan{
+    position:absolute;
+    top: 500px;
+    left: 600px;
+}
+
+.navbar-brand{
+    background: #e7e7e7;
+}
+.column{
+    padding: 20px 0 48px;
+}
+.navbar-default{
+    opacity: .4;
+}
+.panel{
+    margin-top: 10px;
+}
+.row{
+    padding-top: 12px;
+}
+.container{
+    margin-bottom: 40px;
+}
+.arr{
+    padding-left: 390px;
+}
+.titled{
+    padding: 30px;
+}
+.tuot{
+    padding-top: 30px;
+}
+.tuot a{
+    padding: 10px;
+}
+.btn1{
+    padding: 10px 20px;
+    margin-left: 70px;
+    background-color: #2b669a;
+    color: #fff;
+}
+.btn2{
+    padding: 10px 20px;
+    margin-left: 8px;
+    background-color: #2b669a;
+    color: #fff;
+}
+.checkbox{
+    margin-left: 100px;
+    height: 60px;
+}
+.mean{
+    display: none;
+}
+
+.change{
+    margin-top: 160px;
+    margin-left: 310px;
+}
+.row .btn a{
+    color: #fff;
+
+}
+.panel-body{
+    padding-left: 100px;
+}
+.aten{
+    width: 45px;
+    height: 30px;
+}
+.checksa{
+    padding-left: 6px;
+}
+.box1{
+    padding-left: 6px;
+}
+.cate{
+    padding-left: 20px;
+}
+.do_ceme{
+    width: 800px;
+}
+.tome{
+    padding-left: 100px;
+}
+.come{
+    width: 44px;
+}
+.comes{
+    margin-left: 205px;
+    width: 230px;
+}
+.add-on{
+    position:absolute;
+    top:366px;
+    left:508px;
+}
+.come_one{
+    margin-left: 209px;
+}
+.form-actions{
+    margin: 40px;
+}
+.top{
+    margin-top: 10px;
+}
+#profile{
+     display: none;
+ }

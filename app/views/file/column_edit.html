@@ -1,0 +1,159 @@
+{{extends file="app/views/layout/admin_layout.html"}}
+{{block name="css"}}
+<link rel="stylesheet" type="text/css" href="{{$assets}}/select2/css/select2.min.css">
+{{/block}}
+
+{{block name="content"}}
+<div>
+    <div>
+        <a href="index.php?c=admin"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>主页 ></a>
+        <a href="index.php?c=file&a=column">栏目管理 ></a>
+        <a href="">修改栏目</a>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>修改栏目</h2>
+        </div>
+        <div class="panel-body cate">
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active1"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">添加栏目</a></li>
+                    <li role="presentation" class="profile"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">栏目内容</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="home">
+                        <form class="form-horizontal top" action="index.php?c=file&a=column_alter&id={{$cate.id}}" method="post">
+                            <div class="all_top">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">父栏目</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control do_ceme" name="pid">
+                                            <option value="0">顶级栏目</option>
+                                            {{foreach $top_cate as $cates}}
+                                            <option value="{{$cates.id}}"
+                                                    {{if $cates.id eq $cate.pid}}
+                                                    selected
+                                                    {{/if}}
+                                                    >
+                                                {{for $i=1; $i<$cates.count; $i++}}
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                {{/for}}
+                                                {{$cates.name}}
+                                            </option>
+                                            {{/foreach}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control"  placeholder="栏目名称" value="{{$cate.name}}" name="name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">拼音</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="栏目拼音">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">名称</label>
+                                    <div class="col-sm-10">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="optionsRadios1" value="0" {{if $cate.type eq 0}}checked {{/if}}>
+                                                封面
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="optionsRadios2" value="1" {{if $cate.type eq 1}}checked {{/if}}>
+                                                列表
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type" id="optionsRadios3" value="2" {{if $cate.type eq 2}}checked {{/if}}>
+
+                                                URL跳转
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">URL跳转地址</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control"  placeholder="如果选着了URL跳转，请填写地址" name="site" value="{{$cate.site}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">是否显示</label>
+                                    <div class="col-sm-10">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="show"  value="0" {{if $cate.show eq 0}}checked {{/if}}>
+                                                是
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="show" value="1" {{if $cate.show eq 1}}checked {{/if}}>
+                                                否
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel"  id="profile">
+                                <textarea name="editor1" class="content">{{$cate.content}}</textarea>
+                            </div>
+                            <div class="form-actions tome" style="margin: 0px;">
+                                <button type="submit" class="btn btn-success">添加</button>
+                                <a href="" class="btn btn-info">返回</a>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{{/block}}
+{{block name="js"}}
+<script type="text/javascript" src="{{$assets}}/select2/js/select2.min.js"></script>
+<script src="{{$assets}}/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="{{$assets}}/ckfinder/ckfinder.js"></script>
+<script type="text/javascript">
+    $('select').select2();
+    $(function(){
+        $(".profile").click(function(){
+            $("#profile").fadeIn(200);
+            $(".all_top").hide(100);
+        })
+        $(".active1").click(function(){
+            $(".all_top").fadeIn(200);
+            $("#profile").hide(100);
+        })
+    })
+    CKEDITOR.replace('editor1',
+            {
+                filebrowserBrowseUrl: '{{$assets}}/ckfinder/ckfinder.html',
+                filebrowserImageBrowseUrl: '{{$assets}}/ckfinder/ckfinder.html?type=Images',
+                filebrowserFlashBrowseUrl: '{{$assets}}/ckfinder/ckfinder.html?type=Flash',
+                filebrowserUploadUrl: '{{$assets}}/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                filebrowserImageUploadUrl: '{{$assets}}/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                filebrowserFlashUploadUrl: '{{$assets}}/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+            });
+</script>
+
+{{/block}}
